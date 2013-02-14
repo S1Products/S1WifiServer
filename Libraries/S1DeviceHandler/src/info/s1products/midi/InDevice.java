@@ -1,5 +1,6 @@
 package info.s1products.midi;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sound.midi.MidiDevice;
@@ -16,7 +17,7 @@ public class InDevice implements MidiDevice {
 
 	private MidiInDeviceInfo deviceInfo;
 
-	private Transmitter transmitter;
+	private List<Transmitter> transmitterList = new ArrayList<Transmitter>();
 	
 	public InDevice() {
 		
@@ -25,7 +26,7 @@ public class InDevice implements MidiDevice {
 										  DESCRIPTION, 
 										  VERSION);
 		
-		transmitter = DriverFactory.createTransmitter();
+		transmitterList.add(DriverFactory.createTransmitter());
 	}
 	
 	@Override
@@ -73,13 +74,12 @@ public class InDevice implements MidiDevice {
 
 	@Override
 	public Transmitter getTransmitter() throws MidiUnavailableException {
-		return transmitter;
+		return transmitterList.get(0);
 	}
 
 	@Override
 	public List<Transmitter> getTransmitters() {
-		// TODO Auto-generated method stub
-		return null;
+		return transmitterList;
 	}
 	
 	public class MidiInDeviceInfo extends Info{

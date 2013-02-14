@@ -65,7 +65,9 @@ public class S1WifiServerGui {
 	private JCheckBox checkMidiOut;
 	private JCheckBox checkMidiIn;
 	private JPanel panelMain;
+	@SuppressWarnings("rawtypes")
 	private JComboBox comboMidiOut;
+	@SuppressWarnings("rawtypes")
 	private JComboBox comboMidiIn;
 	private JLabel lblUdpPort;
 	private JSpinner spinRequestPort;
@@ -81,7 +83,7 @@ public class S1WifiServerGui {
 
 		try{
 			Properties lafProp = new Properties();
-			lafProp.setProperty("backgroundColorLight", "50 50 50");
+			lafProp.setProperty("backgroundColorLight", "40 40 40");
 			lafProp.setProperty("backgroundColorDark",  "30 30 30");
 			
 			HiFiLookAndFeel.setCurrentTheme(lafProp);
@@ -106,6 +108,7 @@ public class S1WifiServerGui {
 		});
 	}
 
+	@SuppressWarnings("unchecked")
 	private void initializeDeviceList(){
 		
 		comboMidiOut.removeAllItems();
@@ -265,6 +268,7 @@ public class S1WifiServerGui {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	@SuppressWarnings("rawtypes")
 	private void initialize() {
 		frmSWifiServer = new JFrame();
 		frmSWifiServer.addWindowListener(new WindowAdapter() {

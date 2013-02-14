@@ -16,7 +16,7 @@ public class OutDevice implements MidiDevice {
 	public static final String VERSION     = "1.0.0";
 
 	private MidiOutDeviceInfo deviceInfo;
-	private Receiver receiver;
+	private List<Receiver> receiverList = new ArrayList<Receiver>();
 	
 	public OutDevice() {
 		
@@ -25,7 +25,7 @@ public class OutDevice implements MidiDevice {
 										   DESCRIPTION, 
 										   VERSION);
 		
-		receiver = DriverFactory.createReceiver();
+		receiverList.add(DriverFactory.createReceiver());
 	}
 	
 	@Override
@@ -67,15 +67,11 @@ public class OutDevice implements MidiDevice {
 
 	@Override
 	public Receiver getReceiver() throws MidiUnavailableException {
-		return receiver;
+		return receiverList.get(0);
 	}
 
 	@Override
 	public List<Receiver> getReceivers() {
-		
-		List<Receiver> receiverList = new ArrayList<Receiver>();
-		receiverList.add(receiver);
-		
 		return receiverList;
 	}
 
