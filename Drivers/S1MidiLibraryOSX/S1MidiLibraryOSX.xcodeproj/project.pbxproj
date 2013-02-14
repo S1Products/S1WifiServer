@@ -25,6 +25,14 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		8A0EC32416CD32F70071F52D /* info_s1products_midi_NativeDeviceUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A0EC32116CD32F70071F52D /* info_s1products_midi_NativeDeviceUtil.h */; };
+		8A0EC32516CD32F70071F52D /* info_s1products_midi_NativeDeviceUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A0EC32116CD32F70071F52D /* info_s1products_midi_NativeDeviceUtil.h */; };
+		8A0EC32616CD32F70071F52D /* info_s1products_midi_NativeReceiver.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A0EC32216CD32F70071F52D /* info_s1products_midi_NativeReceiver.h */; };
+		8A0EC32716CD32F70071F52D /* info_s1products_midi_NativeReceiver.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A0EC32216CD32F70071F52D /* info_s1products_midi_NativeReceiver.h */; };
+		8A0EC32816CD32F70071F52D /* info_s1products_midi_NativeTransmitter.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A0EC32316CD32F70071F52D /* info_s1products_midi_NativeTransmitter.h */; };
+		8A0EC32916CD32F70071F52D /* info_s1products_midi_NativeTransmitter.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A0EC32316CD32F70071F52D /* info_s1products_midi_NativeTransmitter.h */; };
+		8A0EC32C16CD38680071F52D /* info_s1products_midi_NativeDeviceUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A0EC32B16CD38680071F52D /* info_s1products_midi_NativeDeviceUtil.cpp */; };
+		8A0EC32D16CD38680071F52D /* info_s1products_midi_NativeDeviceUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A0EC32B16CD38680071F52D /* info_s1products_midi_NativeDeviceUtil.cpp */; };
 		8A39E65616B6D40500AD1C8D /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A39E65516B6D40500AD1C8D /* CoreFoundation.framework */; };
 		8A39E65816B6D40C00AD1C8D /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A39E65716B6D40C00AD1C8D /* CoreMIDI.framework */; };
 		8A39E65C16B6D41E00AD1C8D /* MidiSender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E65A16B6D41E00AD1C8D /* MidiSender.cpp */; };
@@ -49,10 +57,6 @@
 		8A8791E616BBC73C007A7296 /* jni_md.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A8791DA16BBC73C007A7296 /* jni_md.h */; };
 		8A8791E916BBCA91007A7296 /* info_s1products_midi_MidiReceiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A8791E716BBCA91007A7296 /* info_s1products_midi_MidiReceiver.cpp */; };
 		8A8791EA16BBCA91007A7296 /* info_s1products_midi_MidiReceiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A8791E716BBCA91007A7296 /* info_s1products_midi_MidiReceiver.cpp */; };
-		8A8791EE16BBD12A007A7296 /* info_s1products_midi_MidiDeviceUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A8791ED16BBD12A007A7296 /* info_s1products_midi_MidiDeviceUtil.h */; };
-		8A8791EF16BBD12A007A7296 /* info_s1products_midi_MidiDeviceUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A8791ED16BBD12A007A7296 /* info_s1products_midi_MidiDeviceUtil.h */; };
-		8A8791F216BBD138007A7296 /* info_s1products_midi_MidiDeviceUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A8791F016BBD138007A7296 /* info_s1products_midi_MidiDeviceUtil.cpp */; };
-		8A8791F316BBD138007A7296 /* info_s1products_midi_MidiDeviceUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A8791F016BBD138007A7296 /* info_s1products_midi_MidiDeviceUtil.cpp */; };
 		8A8791F816BBD18A007A7296 /* MidiDeviceUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A8791F616BBD18A007A7296 /* MidiDeviceUtil.cpp */; };
 		8A8791F916BBD18A007A7296 /* MidiDeviceUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A8791F616BBD18A007A7296 /* MidiDeviceUtil.cpp */; };
 		8A8791FA16BBD18A007A7296 /* MidiDeviceUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A8791F716BBD18A007A7296 /* MidiDeviceUtil.h */; };
@@ -122,6 +126,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8A0EC32116CD32F70071F52D /* info_s1products_midi_NativeDeviceUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = info_s1products_midi_NativeDeviceUtil.h; sourceTree = "<group>"; };
+		8A0EC32216CD32F70071F52D /* info_s1products_midi_NativeReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = info_s1products_midi_NativeReceiver.h; sourceTree = "<group>"; };
+		8A0EC32316CD32F70071F52D /* info_s1products_midi_NativeTransmitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = info_s1products_midi_NativeTransmitter.h; sourceTree = "<group>"; };
+		8A0EC32B16CD38680071F52D /* info_s1products_midi_NativeDeviceUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = info_s1products_midi_NativeDeviceUtil.cpp; sourceTree = "<group>"; };
 		8A39E64E16B6D3F900AD1C8D /* libS1MidiLibraryOSX_x64.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libS1MidiLibraryOSX_x64.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A39E65516B6D40500AD1C8D /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		8A39E65716B6D40C00AD1C8D /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
@@ -137,8 +145,6 @@
 		8A8791D916BBC73C007A7296 /* jni.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jni.h; sourceTree = "<group>"; };
 		8A8791DA16BBC73C007A7296 /* jni_md.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jni_md.h; sourceTree = "<group>"; };
 		8A8791E716BBCA91007A7296 /* info_s1products_midi_MidiReceiver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = info_s1products_midi_MidiReceiver.cpp; sourceTree = "<group>"; };
-		8A8791ED16BBD12A007A7296 /* info_s1products_midi_MidiDeviceUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = info_s1products_midi_MidiDeviceUtil.h; sourceTree = "<group>"; };
-		8A8791F016BBD138007A7296 /* info_s1products_midi_MidiDeviceUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = info_s1products_midi_MidiDeviceUtil.cpp; sourceTree = "<group>"; };
 		8A8791F616BBD18A007A7296 /* MidiDeviceUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MidiDeviceUtil.cpp; path = src/MidiDeviceUtil.cpp; sourceTree = "<group>"; };
 		8A8791F716BBD18A007A7296 /* MidiDeviceUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MidiDeviceUtil.h; path = src/MidiDeviceUtil.h; sourceTree = "<group>"; };
 		8A9B06A916BA43C000FDA5F0 /* libS1MidiLibraryOSX_x86.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libS1MidiLibraryOSX_x86.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -218,8 +224,10 @@
 		8A8791D416BBC73C007A7296 /* jni */ = {
 			isa = PBXGroup;
 			children = (
-				8A8791ED16BBD12A007A7296 /* info_s1products_midi_MidiDeviceUtil.h */,
-				8A8791F016BBD138007A7296 /* info_s1products_midi_MidiDeviceUtil.cpp */,
+				8A0EC32116CD32F70071F52D /* info_s1products_midi_NativeDeviceUtil.h */,
+				8A0EC32B16CD38680071F52D /* info_s1products_midi_NativeDeviceUtil.cpp */,
+				8A0EC32216CD32F70071F52D /* info_s1products_midi_NativeReceiver.h */,
+				8A0EC32316CD32F70071F52D /* info_s1products_midi_NativeTransmitter.h */,
 				8A8791D616BBC73C007A7296 /* info_s1products_midi_MidiReceiver.h */,
 				8A8791E716BBCA91007A7296 /* info_s1products_midi_MidiReceiver.cpp */,
 				8A8791D816BBC73C007A7296 /* info_s1products_midi_MidiSender.h */,
@@ -254,8 +262,10 @@
 				8A8791E116BBC73C007A7296 /* info_s1products_midi_MidiSender.h in Headers */,
 				8A8791E316BBC73C007A7296 /* jni.h in Headers */,
 				8A8791E516BBC73C007A7296 /* jni_md.h in Headers */,
-				8A8791EE16BBD12A007A7296 /* info_s1products_midi_MidiDeviceUtil.h in Headers */,
 				8A8791FA16BBD18A007A7296 /* MidiDeviceUtil.h in Headers */,
+				8A0EC32416CD32F70071F52D /* info_s1products_midi_NativeDeviceUtil.h in Headers */,
+				8A0EC32616CD32F70071F52D /* info_s1products_midi_NativeReceiver.h in Headers */,
+				8A0EC32816CD32F70071F52D /* info_s1products_midi_NativeTransmitter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,8 +280,10 @@
 				8A8791E216BBC73C007A7296 /* info_s1products_midi_MidiSender.h in Headers */,
 				8A8791E416BBC73C007A7296 /* jni.h in Headers */,
 				8A8791E616BBC73C007A7296 /* jni_md.h in Headers */,
-				8A8791EF16BBD12A007A7296 /* info_s1products_midi_MidiDeviceUtil.h in Headers */,
 				8A8791FB16BBD18A007A7296 /* MidiDeviceUtil.h in Headers */,
+				8A0EC32516CD32F70071F52D /* info_s1products_midi_NativeDeviceUtil.h in Headers */,
+				8A0EC32716CD32F70071F52D /* info_s1products_midi_NativeReceiver.h in Headers */,
+				8A0EC32916CD32F70071F52D /* info_s1products_midi_NativeTransmitter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,7 +393,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp \"${PROJECT_DIR}/build/merged/libS1MidiLibraryOSX.dylib\" \"../../Servers/S1WifiServerOSX/clib/\"";
+			shellScript = "cp \"${PROJECT_DIR}/build/merged/libS1MidiLibraryOSX.dylib\" \"../../Libraries/S1DeviceHandler/native-lib/\"";
 		};
 		8AD84BFE16BA4A1100193126 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -421,8 +433,8 @@
 				8A8791C816BB9F5F007A7296 /* MidiClientHandler.cpp in Sources */,
 				8A8791DF16BBC73C007A7296 /* info_s1products_midi_MidiSender.cpp in Sources */,
 				8A8791E916BBCA91007A7296 /* info_s1products_midi_MidiReceiver.cpp in Sources */,
-				8A8791F216BBD138007A7296 /* info_s1products_midi_MidiDeviceUtil.cpp in Sources */,
 				8A8791F816BBD18A007A7296 /* MidiDeviceUtil.cpp in Sources */,
+				8A0EC32C16CD38680071F52D /* info_s1products_midi_NativeDeviceUtil.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,8 +447,8 @@
 				8A8791C916BB9F5F007A7296 /* MidiClientHandler.cpp in Sources */,
 				8A8791E016BBC73C007A7296 /* info_s1products_midi_MidiSender.cpp in Sources */,
 				8A8791EA16BBCA91007A7296 /* info_s1products_midi_MidiReceiver.cpp in Sources */,
-				8A8791F316BBD138007A7296 /* info_s1products_midi_MidiDeviceUtil.cpp in Sources */,
 				8A8791F916BBD18A007A7296 /* MidiDeviceUtil.cpp in Sources */,
+				8A0EC32D16CD38680071F52D /* info_s1products_midi_NativeDeviceUtil.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

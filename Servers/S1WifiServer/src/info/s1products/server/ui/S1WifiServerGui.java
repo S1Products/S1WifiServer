@@ -65,9 +65,7 @@ public class S1WifiServerGui {
 	private JCheckBox checkMidiOut;
 	private JCheckBox checkMidiIn;
 	private JPanel panelMain;
-	@SuppressWarnings("rawtypes")
 	private JComboBox comboMidiOut;
-	@SuppressWarnings("rawtypes")
 	private JComboBox comboMidiIn;
 	private JLabel lblUdpPort;
 	private JSpinner spinRequestPort;
@@ -108,7 +106,6 @@ public class S1WifiServerGui {
 		});
 	}
 
-	@SuppressWarnings("unchecked")
 	private void initializeDeviceList(){
 		
 		comboMidiOut.removeAllItems();
@@ -268,7 +265,6 @@ public class S1WifiServerGui {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	@SuppressWarnings("rawtypes")
 	private void initialize() {
 		frmSWifiServer = new JFrame();
 		frmSWifiServer.addWindowListener(new WindowAdapter() {

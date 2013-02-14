@@ -36,10 +36,18 @@ public:
     CFStringRef GetMidiEndpointName(int deviceIndex, int entityIndex, int sourceIndex);
     
     SInt32 IsEndpointOffline(int deviceIndex, int entityIndex, int sourceIndex);
-	
+
+    unsigned long GetOutDeviceCount();
+    
+    CFStringRef GetOutDeviceName(int index);
+
+    CFStringRef GetOutDeviceManufacturer(int index);
+
     unsigned long GetInDeviceCount();
     
     CFStringRef GetInDeviceName(int index);
+
+    CFStringRef GetInDeviceManufacturer(int index);
 };
 
 #endif /* defined(__S1MidiLibraryOSX__MidiDeviceUtil__) */

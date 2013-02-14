@@ -8,6 +8,27 @@ import javax.sound.midi.Transmitter;
 
 public class DriverFactory {
 
+	public static NativeDeviceUtil createDeviceUtil(){
+		
+		OSType type = OSDetector.getExecutingOSType();
+		
+		String libraryName = "";
+		
+		switch(type){
+			case MacOSX:
+				libraryName = "S1MidiLibraryOSX";
+				break;
+				
+			case Windows:
+				break;
+				
+			default:
+				break;
+		}
+		
+		return new NativeDeviceUtil(libraryName);
+	}
+	
 	public static Receiver createReceiver(){
 		
 		OSType type = OSDetector.getExecutingOSType();
@@ -16,6 +37,7 @@ public class DriverFactory {
 		
 		switch(type){
 			case MacOSX:
+				libraryName = "S1MidiLibraryOSX";
 				break;
 				
 			case Windows:
@@ -37,6 +59,7 @@ public class DriverFactory {
 		switch(type){
 		
 			case MacOSX:
+				libraryName = "S1MidiLibraryOSX";
 				break;
 				
 			case Windows:

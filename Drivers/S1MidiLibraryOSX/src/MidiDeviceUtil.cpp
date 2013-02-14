@@ -90,6 +90,37 @@ SInt32 MidiDeviceUtil::IsEndpointOffline(int deviceIndex, int entityIndex, int s
     return isOffline;
 }
 
+unsigned long MidiDeviceUtil::GetOutDeviceCount()
+{
+    return MIDIGetNumberOfDestinations();
+}
+
+CFStringRef MidiDeviceUtil::GetOutDeviceName(int index)
+{
+    MIDIEndpointRef endpoint = MIDIGetDestination(index);
+
+    CFStringRef deviceName = NULL;
+    
+    MIDIObjectGetStringProperty(endpoint,
+                                kMIDIPropertyName,
+                                &deviceName);
+
+    return deviceName;
+}
+
+CFStringRef MidiDeviceUtil::GetOutDeviceManufacturer(int index)
+{
+    MIDIEndpointRef endpoint = MIDIGetDestination(index);
+    
+    CFStringRef manufacturer = NULL;
+    
+    MIDIObjectGetStringProperty(endpoint,
+                                kMIDIPropertyManufacturer,
+                                &manufacturer);
+    
+    return manufacturer;
+}
+
 unsigned long MidiDeviceUtil::GetInDeviceCount()
 {
     return MIDIGetNumberOfSources();
@@ -106,4 +137,17 @@ CFStringRef MidiDeviceUtil::GetInDeviceName(int index)
                                 &deviceName);
 
     return deviceName;
+}
+
+CFStringRef MidiDeviceUtil::GetInDeviceManufacturer(int index)
+{
+    MIDIEndpointRef endpoint = MIDIGetSource(index);
+    
+    CFStringRef manufacturer = NULL;
+    
+    MIDIObjectGetStringProperty(endpoint,
+                                kMIDIPropertyManufacturer,
+                                &manufacturer);
+    
+    return manufacturer;
 }

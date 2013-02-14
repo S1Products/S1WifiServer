@@ -58,11 +58,11 @@ public class OSDetector {
 		}else if(osName.startsWith(OS_PREFIX_LINUX_2)){
 			return OSType.Linux;
 			
-		}else if(osName.startsWith(OS_PREFIX_MAC)){
-			return OSType.Mac;
-			
 		}else if(osName.startsWith(OS_PREFIX_MAC_OSX)){
 			return OSType.MacOSX;
+
+		}else if(osName.startsWith(OS_PREFIX_MAC)){
+			return OSType.Mac;
 			
 		}else if(osName.startsWith(OS_PREFIX_FREE_BSD)){
 			return OSType.FreeBSD;
