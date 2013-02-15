@@ -20,6 +20,8 @@ import info.s1products.server.event.RequestReceivedEvent;
 import info.s1products.server.event.RequestReceivedListener;
 import info.s1products.server.ui.controller.S1MidiWifiServerGuiController;
 import info.s1products.server.ui.widget.MonitorLightField;
+import info.s1products.server.util.OSDetector;
+import info.s1products.server.util.OSDetector.OSType;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -80,12 +82,18 @@ public class S1WifiServerGui {
 	private JPanel panelOthers;
 	private JCheckBox checkAlwaysOnTop;
 	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
+	private static void setLookAndFeel(){
 
 		try{
+/*			
+	        OSType type = OSDetector.getExecutingOSType();
+	        if(type == OSType.Mac || type == OSType.MacOSX){
+	        	
+	        	System.setProperty( "com.apple.mrj.application.apple.menu.about.name", "S1 Wifi Server" );
+	        	System.setProperty( "com.apple.macos.useScreenMenuBar", "true" );
+	        	System.setProperty( "apple.laf.useScreenMenuBar", "true" );
+	        }
+*/
 			Properties lafProp = new Properties();
 			lafProp.setProperty("backgroundColorLight", "40 40 40");
 			lafProp.setProperty("backgroundColorDark",  "30 30 30");
@@ -96,6 +104,14 @@ public class S1WifiServerGui {
 		}catch(Exception ex){
 			ex.printStackTrace();
 		}
+	}
+	
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+
+		setLookAndFeel();
 
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
