@@ -1,3 +1,2 @@
 javah -classpath ./bin -d ./jni-headers info.s1products.midi.NativeReceiver
 javah -classpath ./bin -d ./jni-headers info.s1products.midi.NativeTransmitter
-javah -classpath ./bin -d ./jni-headers info.s1products.midi.NativeDeviceUtil

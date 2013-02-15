@@ -15,4 +15,6 @@ public class S1MidiConstants {
 	public static final String KEY_MIDI_IN_INDEX    = "MidiInIndex";
 	public static final String KEY_REQUEST_PORT_NO  = "RequestPortNo";
 	public static final String KEY_NOTIFIER_PORT_NO = "NotifierPortNo";
+	
+	public static final String KEY_ALWAYS_ON_TOP    = "AlwaysOnTop";
 }

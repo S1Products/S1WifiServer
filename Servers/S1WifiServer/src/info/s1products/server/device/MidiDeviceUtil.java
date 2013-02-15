@@ -78,7 +78,7 @@ public class MidiDeviceUtil {
 
 			int recMax = device.getMaxReceivers();
 
-			if(recMax != UNLIMITED || recMax == 0){
+			if(recMax == 0){
 				continue;
 			}
 			
@@ -102,7 +102,7 @@ public class MidiDeviceUtil {
 
 			int trsMax = device.getMaxTransmitters();
 
-			if(trsMax != UNLIMITED || trsMax == 0){
+			if(trsMax == 0){
 				continue;
 			}
 			

@@ -34,6 +34,7 @@ public class MonitorLight extends JPanel {
 	public MonitorLight(){
 		super();
 		loadImages();
+		setDoubleBuffered(true);
 	}
 	
 // Size methods
@@ -75,7 +76,9 @@ public class MonitorLight extends JPanel {
 			
 			@Override
 			public void run() {
+				
 				MonitorLight.this.repaint();
+				SwingUtilities.getRoot(MonitorLight.this).repaint();
 			}
 		});
 	}
@@ -99,7 +102,7 @@ public class MonitorLight extends JPanel {
  		}else{
 			img = offImage;
  		}
-		
+
 		g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), null);	
     }
 

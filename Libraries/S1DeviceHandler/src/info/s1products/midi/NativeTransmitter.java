@@ -16,19 +16,17 @@ public class NativeTransmitter implements Transmitter {
 	native private void jni_initialize();
 	native private void jni_finalize();
 	native private void jni_setTransmitter(NativeTransmitter transmitter);
-	native private void jni_open(int deviceIndex);
+	native private void jni_open();
 	native private void jni_close();
 
 	public NativeTransmitter(String libraryName){
-/*
 		System.loadLibrary(libraryName);
 		jni_initialize();
 		jni_setTransmitter(this);
-*/		
 	}
 	
-	public void open(int deviceIndex){
-		jni_open(deviceIndex);
+	public void open(){
+		jni_open();
 	}
 	
 	@Override

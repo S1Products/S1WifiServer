@@ -6,6 +6,7 @@ import static info.s1products.server.S1MidiConstants.KEY_NOTIFIER_PORT_NO;
 import static info.s1products.server.S1MidiConstants.KEY_REQUEST_PORT_NO;
 import static info.s1products.server.S1MidiConstants.KEY_USE_MIDI_IN;
 import static info.s1products.server.S1MidiConstants.KEY_USE_MIDI_OUT;
+import static info.s1products.server.S1MidiConstants.KEY_ALWAYS_ON_TOP;
 import static info.s1products.server.ServerConstants.DEFAULT_NOTIFIER_PORT;
 import static info.s1products.server.ServerConstants.DEFAULT_REQUEST_PORT;
 import info.s1products.server.device.MidiDeviceUtil;
@@ -46,6 +47,9 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import com.jtattoo.plaf.hifi.HiFiLookAndFeel;
+import java.awt.FlowLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class S1WifiServerGui {
 
@@ -73,6 +77,8 @@ public class S1WifiServerGui {
 	private JSpinner spinSenderPort;
 	private JTabbedPane tabbedPane;
 	private JPanel panelNetwork;
+	private JPanel panelOthers;
+	private JCheckBox checkAlwaysOnTop;
 	
 	/**
 	 * Launch the application.
@@ -186,6 +192,16 @@ public class S1WifiServerGui {
         }else{
         	spinSenderPort.setValue(Integer.valueOf(notifyPortNo));
         }
+        
+		String alwaysOnTop = appProp.getProperty(KEY_ALWAYS_ON_TOP);
+		if(alwaysOnTop == null){
+			this.frmSWifiServer.setAlwaysOnTop(false);
+			checkAlwaysOnTop.setSelected(false);
+		}else{
+			boolean isOnTop = Boolean.parseBoolean(alwaysOnTop);
+			this.frmSWifiServer.setAlwaysOnTop(isOnTop);
+			checkAlwaysOnTop.setSelected(isOnTop);
+		}
 	}
 	
 	private void initializeUI(){
@@ -209,7 +225,8 @@ public class S1WifiServerGui {
 		toggleServerState.setText("Stop");
 		
 		readyLight.setOn(true);
-		
+		readyLight.repaint();
+
 		disableControls();
 	}
 
@@ -229,6 +246,7 @@ public class S1WifiServerGui {
 		toggleServerState.setText("Start");
 		
 		readyLight.setOn(false);
+		readyLight.repaint();
 		
 		enableControls();
 	}
@@ -252,7 +270,8 @@ public class S1WifiServerGui {
 								comboMidiOut.getSelectedIndex(), 
 								comboMidiIn.getSelectedIndex(), 
 								spinRequestPort.getValue().toString(),
-								spinSenderPort.getValue().toString());
+								spinSenderPort.getValue().toString(),
+								checkAlwaysOnTop.isSelected());
 	}
 	
 	/**
@@ -279,7 +298,7 @@ public class S1WifiServerGui {
 			}
 		});
 		frmSWifiServer.setTitle("S1 Wifi Server");
-		frmSWifiServer.setBounds(100, 100, 330, 270);
+		frmSWifiServer.setBounds(100, 100, 280, 230);
 		frmSWifiServer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		panelOperation = new JPanel();
@@ -289,6 +308,7 @@ public class S1WifiServerGui {
 		toggleServerState = new JToggleButton("Start");
 		toggleServerState.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
+				
 				if(toggleServerState.isSelected()){
 					startServer();
 				}else{
@@ -359,27 +379,43 @@ public class S1WifiServerGui {
 					.addContainerGap()
 					.addGroup(gl_panelNetwork.createParallelGroup(Alignment.LEADING, false)
 						.addComponent(lblSenderPort, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(lblUdpPort, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addComponent(lblUdpPort, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panelNetwork.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(spinRequestPort)
-						.addComponent(spinSenderPort, GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE))
-					.addContainerGap(146, Short.MAX_VALUE))
+						.addComponent(spinSenderPort)
+						.addComponent(spinRequestPort, GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE))
+					.addContainerGap(131, Short.MAX_VALUE))
 		);
 		gl_panelNetwork.setVerticalGroup(
 			gl_panelNetwork.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelNetwork.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panelNetwork.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblUdpPort)
-						.addComponent(spinRequestPort, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panelNetwork.createParallelGroup(Alignment.BASELINE)
+					.addGroup(gl_panelNetwork.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panelNetwork.createSequentialGroup()
+							.addGap(12)
+							.addComponent(lblUdpPort))
+						.addGroup(gl_panelNetwork.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(spinRequestPort, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addGap(6)
+					.addGroup(gl_panelNetwork.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblSenderPort)
 						.addComponent(spinSenderPort, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(62, Short.MAX_VALUE))
+					.addContainerGap(37, Short.MAX_VALUE))
 		);
 		panelNetwork.setLayout(gl_panelNetwork);
+		
+		panelOthers = new JPanel();
+		FlowLayout flowLayout = (FlowLayout) panelOthers.getLayout();
+		flowLayout.setAlignment(FlowLayout.LEFT);
+		tabbedPane.addTab("Others", null, panelOthers, null);
+		
+		checkAlwaysOnTop = new JCheckBox("Always on top this window");
+		checkAlwaysOnTop.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frmSWifiServer.setAlwaysOnTop(checkAlwaysOnTop.isSelected());
+			}
+		});
+		panelOthers.add(checkAlwaysOnTop);
 		
 		JPanel panelMonitor = new JPanel();
 		panelMonitor.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Status", TitledBorder.LEFT, TitledBorder.TOP, null, null));

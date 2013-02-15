@@ -12,10 +12,8 @@ public class NativeReceiver implements Receiver {
 	native private void jni_sendMessage(byte[] data);
 
 	public NativeReceiver(String libraryName){
-/*		
 		System.loadLibrary(libraryName);
 		jni_initialize();
-*/		
 	}
 	
 	public void finalize(){

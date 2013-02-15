@@ -19,13 +19,17 @@ JNIEnv* getJNIEnv(int *attach)
     
 	JNIEnv *env;
 	jint ret = jvm->GetEnv((void**)&env, JNI_VERSION_1_6);
-	if (ret == JNI_OK) {
+	
+    if (ret == JNI_OK)
+    {
 		return env;
 	}
     
 	ret = jvm->AttachCurrentThread((void**)&env, NULL);
-	if (ret == JNI_OK) {
-		*attach = 1; //自分でアタッチしたという印
+
+	if (ret == JNI_OK)
+    {
+		*attach = 1;
 		return env;
 	}
     
@@ -84,49 +88,27 @@ void MidiReceiver::setListener(jobject listener)
     midiListener = listener;
 }
 
-MIDIPortRef MidiReceiver::createInputPort(MIDIClientRef client)
-{
-    OSStatus err;
-    MIDIPortRef inPort;
-    
-    //Create MIDI In port
-    err = MIDIInputPortCreate(client, CFSTR("S1Bridge_In"),
-                              MIDIInputProc, this, &inPort);
-    
-    if (err != noErr)
-    {
-        printf("MIDI create in port err.");
-        return nil;
-    }
-    
-    return inPort;
-}
-
-MIDIEndpointRef MidiReceiver::createSource(MIDIPortRef inPort, int deviceIndex)
-{
-    OSStatus err;
-    
-    MIDIEndpointRef source = MIDIGetSource(deviceIndex);
-    err = MIDIPortConnectSource(inPort, source, NULL);
-    
-    return source;
-}
-
-void MidiReceiver::start(int deviceIndex)
+void MidiReceiver::start()
 {
     MidiClientHandler *handler = MidiClientHandler::GetInstance();
     MIDIClientRef client = handler->GetClient();
 
-    midiInPort = createInputPort(client);
-    midiSource = createSource(midiInPort, deviceIndex);
+    //Create MIDI In destination
+    OSStatus err
+        = MIDIDestinationCreate(client, CFSTR("S1WifiServer_In"), MIDIInputProc, this, &midiDest);
+    
+    if (err != noErr)
+    {
+        printf("MIDI create in port err.");
+        return;
+    }
     
     printf("CoreMidi receiver started.");
 }
 
 void MidiReceiver::stop()
 {
-    MIDIPortDispose(midiInPort);
-    MIDIEndpointDispose(midiSource);
+    MIDIEndpointDispose(midiDest);
     
     printf("CoreMidi receiver stopped.");
 }

@@ -18,6 +18,8 @@ public class OutDevice implements MidiDevice {
 	private MidiOutDeviceInfo deviceInfo;
 	private List<Receiver> receiverList = new ArrayList<Receiver>();
 	
+	private boolean isOpen;
+	
 	public OutDevice() {
 		
 		deviceInfo = new MidiOutDeviceInfo(DEVICE_NAME, 
@@ -35,23 +37,27 @@ public class OutDevice implements MidiDevice {
 
 	@Override
 	public void open() throws MidiUnavailableException {
-		// TODO Auto-generated method stub
+		
+		NativeReceiver receiver = (NativeReceiver)receiverList.get(0);
+		receiver.open();
+		isOpen = true;
 	}
 
 	@Override
 	public void close() {
-		// TODO Auto-generated method stub
+
+		NativeReceiver receiver = (NativeReceiver)receiverList.get(0);
+		receiver.close();
+		isOpen = false;
 	}
 
 	@Override
 	public boolean isOpen() {
-		// TODO Auto-generated method stub
-		return false;
+		return isOpen;
 	}
 
 	@Override
 	public long getMicrosecondPosition() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 

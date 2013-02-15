@@ -15,6 +15,7 @@ public class InDevice implements MidiDevice {
 	public static final String DESCRIPTION = "In device for S1 WIFI Server";
 	public static final String VERSION     = "1.0.0";
 
+	private boolean isOpen;
 	private MidiInDeviceInfo deviceInfo;
 
 	private List<Transmitter> transmitterList = new ArrayList<Transmitter>();
@@ -36,15 +37,29 @@ public class InDevice implements MidiDevice {
 
 	@Override
 	public void open() throws MidiUnavailableException {
+		
+		NativeTransmitter transmitter 
+			= (NativeTransmitter)transmitterList.get(0);
+
+		transmitter.open();
+		
+		isOpen = true;
 	}
 
 	@Override
 	public void close() {
+
+		NativeTransmitter transmitter 
+			= (NativeTransmitter)transmitterList.get(0);
+
+		transmitter.close();
+		
+		isOpen = false;
 	}
 
 	@Override
 	public boolean isOpen() {
-		return false;
+		return isOpen;
 	}
 
 	@Override

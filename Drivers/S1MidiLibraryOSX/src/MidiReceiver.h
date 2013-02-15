@@ -18,14 +18,10 @@
 class MidiReceiver
 {
 private:
-    MIDIPortRef midiInPort;
-    MIDIEndpointRef midiSource;
+    MIDIEndpointRef midiDest;
 
-    MIDIPortRef createInputPort(MIDIClientRef client);
-    MIDIEndpointRef createSource(MIDIPortRef inPort, int deviceIndex);
-    
 public:
-    void start(int deviceIndex);
+    void start();
     void stop();
     void setVM(JavaVM *vm);
     void setListener(jobject listener);

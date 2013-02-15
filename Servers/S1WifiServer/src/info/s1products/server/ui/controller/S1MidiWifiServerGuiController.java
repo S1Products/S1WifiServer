@@ -6,6 +6,7 @@ import static info.s1products.server.S1MidiConstants.KEY_NOTIFIER_PORT_NO;
 import static info.s1products.server.S1MidiConstants.KEY_REQUEST_PORT_NO;
 import static info.s1products.server.S1MidiConstants.KEY_USE_MIDI_IN;
 import static info.s1products.server.S1MidiConstants.KEY_USE_MIDI_OUT;
+import static info.s1products.server.S1MidiConstants.KEY_ALWAYS_ON_TOP;
 import static info.s1products.server.S1MidiConstants.PROP_FILE;
 import static info.s1products.server.ServerConstants.DEFAULT_NOTIFIER_PORT;
 import static info.s1products.server.ServerConstants.DEFAULT_REQUEST_PORT;
@@ -115,7 +116,8 @@ public class S1MidiWifiServerGuiController {
 	
 	public void saveSettings(boolean useOut, boolean useIn, 
 			int midiOut, int midiIn, 
-			String reqPortNo, String notifyPortNo){
+			String reqPortNo, String notifyPortNo,
+			boolean alwaysOnTop){
 		
 		Properties appProp = new Properties();
 		
@@ -126,6 +128,7 @@ public class S1MidiWifiServerGuiController {
 			appProp.setProperty(KEY_MIDI_IN_INDEX,    String.valueOf(midiIn));
 			appProp.setProperty(KEY_REQUEST_PORT_NO,  reqPortNo);
 			appProp.setProperty(KEY_NOTIFIER_PORT_NO, notifyPortNo);
+			appProp.setProperty(KEY_ALWAYS_ON_TOP,    String.valueOf(alwaysOnTop));
 			
 			OutputStream outStream 
 				= new BufferedOutputStream(new FileOutputStream(PROP_FILE));

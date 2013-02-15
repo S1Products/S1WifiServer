@@ -36,10 +36,10 @@ JNIEXPORT void JNICALL Java_info_s1products_midi_NativeTransmitter_jni_1setTrans
 /*
  * Class:     info_s1products_midi_NativeTransmitter
  * Method:    jni_open
- * Signature: (I)V
+ * Signature: ()V
  */
 JNIEXPORT void JNICALL Java_info_s1products_midi_NativeTransmitter_jni_1open
-  (JNIEnv *, jobject, jint);
+  (JNIEnv *, jobject);
 
 /*
  * Class:     info_s1products_midi_NativeTransmitter
