@@ -63,7 +63,7 @@
 		8AA87D8216BD540300A9B40C /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A39E65516B6D40500AD1C8D /* CoreFoundation.framework */; };
 		8AA87D8816BD544A00A9B40C /* MidiDeviceUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A8791F716BBD18A007A7296 /* MidiDeviceUtil.h */; };
 		8AA87D8916BD550100A9B40C /* MidiDeviceUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A8791F616BBD18A007A7296 /* MidiDeviceUtil.cpp */; };
-		8AD84C0116BA54D800193126 /* libS1MidiLibraryOSX.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8A39E64E16B6D3F900AD1C8D /* libS1MidiLibraryOSX.dylib */; };
+		8AD84C0116BA54D800193126 /* libS1MidiLibraryOSX_x64.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8A39E64E16B6D3F900AD1C8D /* libS1MidiLibraryOSX_x64.dylib */; };
 		8AD84C0316BA54EC00193126 /* libS1MidiLibraryOSX_x86.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8A9B06A916BA43C000FDA5F0 /* libS1MidiLibraryOSX_x86.dylib */; };
 /* End PBXBuildFile section */
 
@@ -101,7 +101,7 @@
 			dstPath = "${PROJECT_DIR}/build/";
 			dstSubfolderSpec = 0;
 			files = (
-				8AD84C0116BA54D800193126 /* libS1MidiLibraryOSX.dylib in CopyFiles */,
+				8AD84C0116BA54D800193126 /* libS1MidiLibraryOSX_x64.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,7 +120,7 @@
 /* Begin PBXFileReference section */
 		8A0EC32216CD32F70071F52D /* info_s1products_midi_NativeReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = info_s1products_midi_NativeReceiver.h; sourceTree = "<group>"; };
 		8A0EC32316CD32F70071F52D /* info_s1products_midi_NativeTransmitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = info_s1products_midi_NativeTransmitter.h; sourceTree = "<group>"; };
-		8A39E64E16B6D3F900AD1C8D /* libS1MidiLibraryOSX.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libS1MidiLibraryOSX.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A39E64E16B6D3F900AD1C8D /* libS1MidiLibraryOSX_x64.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libS1MidiLibraryOSX_x64.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A39E65516B6D40500AD1C8D /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		8A39E65716B6D40C00AD1C8D /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
 		8A39E65A16B6D41E00AD1C8D /* MidiSender.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MidiSender.cpp; path = src/MidiSender.cpp; sourceTree = "<group>"; };
@@ -186,7 +186,7 @@
 		8A39E64F16B6D3F900AD1C8D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8A39E64E16B6D3F900AD1C8D /* libS1MidiLibraryOSX.dylib */,
+				8A39E64E16B6D3F900AD1C8D /* libS1MidiLibraryOSX_x64.dylib */,
 				8A9B06A916BA43C000FDA5F0 /* libS1MidiLibraryOSX_x86.dylib */,
 				8AA87D7616BD53A800A9B40C /* S1MidiLibraryChecker */,
 			);
@@ -291,7 +291,7 @@
 			);
 			name = S1MidiLibraryOSX_x64;
 			productName = S1MidiLibraryOSX;
-			productReference = 8A39E64E16B6D3F900AD1C8D /* libS1MidiLibraryOSX.dylib */;
+			productReference = 8A39E64E16B6D3F900AD1C8D /* libS1MidiLibraryOSX_x64.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		8A9B069A16BA43C000FDA5F0 /* S1MidiLibraryOSX_x86 */ = {
@@ -515,7 +515,7 @@
 					"$(inherited)",
 					"\"$(SYSTEM_LIBRARY_DIR)/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Libraries\"",
 				);
-				PRODUCT_NAME = S1MidiLibraryOSX;
+				PRODUCT_NAME = S1MidiLibraryOSX_x64;
 			};
 			name = Debug;
 		};
@@ -528,7 +528,7 @@
 					"$(inherited)",
 					"\"$(SYSTEM_LIBRARY_DIR)/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Libraries\"",
 				);
-				PRODUCT_NAME = S1MidiLibraryOSX;
+				PRODUCT_NAME = S1MidiLibraryOSX_x64;
 			};
 			name = Release;
 		};
