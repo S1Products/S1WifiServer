@@ -77,9 +77,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "73"
-         endingLineNumber = "73"
-         landmarkName = "MIDIInputProc(const MIDIPacketList *pktlist, void *readProcRefCon, void *srcConnRefCon)"
-         landmarkType = "7">
+         endingLineNumber = "73">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

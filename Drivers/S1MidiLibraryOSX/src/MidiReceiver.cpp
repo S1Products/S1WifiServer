@@ -92,7 +92,7 @@ void MidiReceiver::start()
 
     //Create MIDI In destination
     OSStatus err
-        = MIDIDestinationCreate(client, CFSTR("S1WifiServer_In"), MIDIInputProc, this, &midiDest);
+        = MIDIDestinationCreate(client, CFSTR("S1 Direct In"), MIDIInputProc, this, &midiDest);
     
     if (err != noErr)
     {

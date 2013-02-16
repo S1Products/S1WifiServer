@@ -13,7 +13,7 @@ bool MidiSender::open()
     MidiClientHandler *handler = MidiClientHandler::GetInstance();
     MIDIClientRef client = handler->GetClient();
     
-    OSStatus status = MIDISourceCreate(client, CFSTR("S1WifiServer_Out"), &midi_source);
+    OSStatus status = MIDISourceCreate(client, CFSTR("S1 Direct Out"), &midi_source);
 
 	if(status != 0)
 	{
