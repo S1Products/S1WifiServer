@@ -20,8 +20,6 @@ import info.s1products.server.event.RequestReceivedEvent;
 import info.s1products.server.event.RequestReceivedListener;
 import info.s1products.server.ui.controller.S1MidiWifiServerGuiController;
 import info.s1products.server.ui.widget.MonitorLightField;
-import info.s1products.server.util.OSDetector;
-import info.s1products.server.util.OSDetector.OSType;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -29,6 +27,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
 import java.util.Properties;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -45,16 +45,19 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 import com.jtattoo.plaf.hifi.HiFiLookAndFeel;
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class S1WifiServerGui {
 
+	private Logger logger = Logger.getLogger(S1WifiServerGui.class.getName());
+	
 	private S1MidiWifiServerGuiController controller 
 		= new S1MidiWifiServerGuiController();
 
@@ -290,10 +293,27 @@ public class S1WifiServerGui {
 								checkAlwaysOnTop.isSelected());
 	}
 	
+    private void initLogConfiguration() {
+        try {
+        	InputStream is
+        		= this.getClass().getClassLoader().getResourceAsStream("./logging.properties");
+        	
+            LogManager.getLogManager().readConfiguration(is);
+            
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
 	/**
 	 * Create the application.
 	 */
 	public S1WifiServerGui() {
+
+		initLogConfiguration();
+		logger.config("Test");
+		
 		initialize();
 	}
 
@@ -322,9 +342,9 @@ public class S1WifiServerGui {
 		panelOperation.setLayout(new GridLayout(1, 3, 0, 0));
 		
 		toggleServerState = new JToggleButton("Start");
-		toggleServerState.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
-				
+		toggleServerState.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
 				if(toggleServerState.isSelected()){
 					startServer();
 				}else{

@@ -2,6 +2,7 @@ package info.s1products.midi;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.sound.midi.MidiDevice;
 import javax.sound.midi.MidiUnavailableException;
@@ -9,6 +10,8 @@ import javax.sound.midi.Receiver;
 import javax.sound.midi.Transmitter;
 
 public class OutDevice implements MidiDevice {
+
+	private Logger logger = Logger.getLogger(this.getClass().getName());
 
 	public static final String DEVICE_NAME = "S1 Direct Out";
 	public static final String VENDOR_NAME = "S1Products.info";
@@ -22,12 +25,16 @@ public class OutDevice implements MidiDevice {
 	
 	public OutDevice() {
 		
+		logger.entering(this.getClass().getName(), "Constructor");
+		
 		deviceInfo = new MidiOutDeviceInfo(DEVICE_NAME, 
 										   VENDOR_NAME, 
 										   DESCRIPTION, 
 										   VERSION);
 		
 		receiverList.add(DriverFactory.createReceiver());
+		
+		logger.exiting(this.getClass().getName(), "Constructor");
 	}
 	
 	@Override
@@ -38,17 +45,26 @@ public class OutDevice implements MidiDevice {
 	@Override
 	public void open() throws MidiUnavailableException {
 		
+		logger.entering(this.getClass().getName(), "open");
+
 		NativeReceiver receiver = (NativeReceiver)receiverList.get(0);
 		receiver.open();
 		isOpen = true;
+		
+		logger.exiting(this.getClass().getName(), "open");
 	}
 
 	@Override
 	public void close() {
 
+		logger.entering(this.getClass().getName(), "close");
+/*
 		NativeReceiver receiver = (NativeReceiver)receiverList.get(0);
 		receiver.close();
+*/		
 		isOpen = false;
+		
+		logger.exiting(this.getClass().getName(), "close");
 	}
 
 	@Override

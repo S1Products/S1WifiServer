@@ -1,4 +1,4 @@
-package info.s1products.server.util;
+package info.s1products.util;
 
 public class OSDetector {
 

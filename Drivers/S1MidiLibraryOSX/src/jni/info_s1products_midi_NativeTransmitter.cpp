@@ -10,6 +10,7 @@
 #include "MidiReceiver.h"
 
 static MidiReceiver* midiReceiver = 0;
+static jobject listener;
 
 JNIEXPORT void JNICALL Java_info_s1products_midi_NativeTransmitter_jni_1initialize
 (JNIEnv *, jobject)
@@ -18,15 +19,18 @@ JNIEXPORT void JNICALL Java_info_s1products_midi_NativeTransmitter_jni_1initiali
 }
 
 JNIEXPORT void JNICALL Java_info_s1products_midi_NativeTransmitter_jni_1finalize
-(JNIEnv *, jobject)
+(JNIEnv *env, jobject)
 {
+    env->DeleteGlobalRef(listener);
+    
     delete midiReceiver;
+    midiReceiver = NULL;
 }
 
 JNIEXPORT void JNICALL Java_info_s1products_midi_NativeTransmitter_jni_1setTransmitter
 (JNIEnv *env, jobject obj, jobject jTransmitter)
 {
-    jobject listener = env->NewGlobalRef(jTransmitter);
+    listener = env->NewGlobalRef(jTransmitter);
 
     JavaVM *vm;
     env->GetJavaVM(&vm);

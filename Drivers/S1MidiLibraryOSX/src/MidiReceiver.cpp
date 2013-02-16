@@ -10,8 +10,8 @@
 
 static JavaVM *jvm;
 static jobject midiListener;
-static jclass  jMidiListener;
-static jmethodID jMidiListenerReceiveMethod;
+static jmethodID receivedMethod;
+static bool receiverIsActive;
 
 JNIEnv* getJNIEnv(int *attach)
 {
@@ -36,34 +36,26 @@ JNIEnv* getJNIEnv(int *attach)
 	return NULL;
 }
 
-static void callListener(Byte *data)
+static void callListener(Byte *data, int length)
 {
     int attach;
     JNIEnv *env = getJNIEnv(&attach);
-    
-    if (jMidiListener == NULL)
+
+    if (receivedMethod == NULL)
     {
-        jMidiListener = env->GetObjectClass(midiListener);
-    }
-    
-    if (jMidiListenerReceiveMethod == NULL)
-    {
-        jMidiListenerReceiveMethod
+        jclass jMidiListener = env->GetObjectClass(midiListener);
+
+        receivedMethod
             = env->GetMethodID(jMidiListener,
                                "messageReceived",
                                "([B)V");
     }
     
-    jbyteArray retByteArray = env->NewByteArray(sizeof(data));
+    jbyteArray retByteArray = env->NewByteArray(length);
 
-    jboolean isCopy;
-    jbyte *param = env->GetByteArrayElements(retByteArray, &isCopy);
-
-    env->CallVoidMethod(midiListener,
-                        jMidiListenerReceiveMethod,
-                        param);
+    env->SetByteArrayRegion(retByteArray, 0, length, (jbyte*)data);
     
-    env->ReleaseByteArrayElements(retByteArray, param, 0);
+    env->CallVoidMethod(midiListener, receivedMethod, retByteArray, NULL);
 }
 	
 static void MIDIInputProc(const MIDIPacketList *pktlist,
@@ -75,7 +67,7 @@ static void MIDIInputProc(const MIDIPacketList *pktlist,
     for (int i = 0; i < pktCount; i++)
     {
         MIDIPacket *packet = (MIDIPacket *)&pktlist->packet[i];
-        callListener(packet->data);
+        callListener(packet->data, packet->length);
     }
 }
 
@@ -90,6 +82,11 @@ void MidiReceiver::setListener(jobject listener)
 
 void MidiReceiver::start()
 {
+    if (receiverIsActive)
+    {
+        return;
+    }
+    
     MidiClientHandler *handler = MidiClientHandler::GetInstance();
     MIDIClientRef client = handler->GetClient();
 
@@ -103,12 +100,21 @@ void MidiReceiver::start()
         return;
     }
     
+    receiverIsActive = true;
+
     printf("CoreMidi receiver started.");
 }
 
 void MidiReceiver::stop()
 {
     MIDIEndpointDispose(midiDest);
+    
+    jvm->DetachCurrentThread();
+    
+    jvm = NULL;
+    midiListener  = NULL;
+    
+    receiverIsActive = false;
     
     printf("CoreMidi receiver stopped.");
 }

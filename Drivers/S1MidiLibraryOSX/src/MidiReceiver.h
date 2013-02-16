@@ -18,6 +18,7 @@
 class MidiReceiver
 {
 private:
+    bool isActive;
     MIDIEndpointRef midiDest;
 
 public:

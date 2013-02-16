@@ -1,7 +1,7 @@
 package info.s1products.midi;
 
-import info.s1products.server.util.OSDetector;
-import info.s1products.server.util.OSDetector.OSType;
+import info.s1products.util.OSDetector;
+import info.s1products.util.OSDetector.OSType;
 
 import javax.sound.midi.Receiver;
 import javax.sound.midi.Transmitter;

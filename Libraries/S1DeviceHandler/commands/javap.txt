@@ -1,3 +1,2 @@
 javap -s ./bin/info/s1products/midi/NativeReceiver
 javap -s ./bin/info/s1products/midi/NativeTransmitter
-javap -s ./bin/info/s1products/midi/NativeDeviceUtil

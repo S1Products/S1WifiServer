@@ -21,6 +21,7 @@ JNIEXPORT void JNICALL Java_info_s1products_midi_NativeReceiver_jni_1finalize
 (JNIEnv *, jobject)
 {
     delete midiSender;
+    midiSender = NULL;
 }
 
 JNIEXPORT void JNICALL Java_info_s1products_midi_NativeReceiver_jni_1open
