@@ -23,6 +23,8 @@ import info.s1products.server.ui.widget.MonitorLightField;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
@@ -53,8 +55,12 @@ import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 
 public class S1WifiServerGui {
+
+	public static final String VERSION_NO = "2.0";
+	public static final String ICON_IMAGE = "S1WifiServerIcon.png";
 
 	private Logger logger = Logger.getLogger(S1WifiServerGui.class.getName());
 	
@@ -306,6 +312,18 @@ public class S1WifiServerGui {
             ex.printStackTrace();
         }
     }
+    
+	private Image loadIconImage(){
+
+		URL imageUrl 
+			= this.getClass().getClassLoader().getResource(ICON_IMAGE);
+
+		Image image 
+			= Toolkit.getDefaultToolkit().getImage(imageUrl);
+
+		return image;
+	}
+
 	/**
 	 * Create the application.
 	 */
@@ -333,9 +351,10 @@ public class S1WifiServerGui {
 				disposeUI();
 			}
 		});
-		frmSWifiServer.setTitle("S1 Wifi Server");
+		frmSWifiServer.setTitle("S1 Wifi Server " + VERSION_NO);
 		frmSWifiServer.setBounds(100, 100, 280, 230);
 		frmSWifiServer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmSWifiServer.setIconImage(loadIconImage());
 		
 		panelOperation = new JPanel();
 		frmSWifiServer.getContentPane().add(panelOperation, BorderLayout.SOUTH);
