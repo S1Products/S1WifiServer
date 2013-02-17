@@ -302,7 +302,11 @@ public class S1WifiServerGui {
     private void initLogConfiguration() {
         try {
         	InputStream is
-        		= this.getClass().getClassLoader().getResourceAsStream("./logging.properties");
+        		= this.getClass().getClassLoader().getResourceAsStream("logging.properties");
+        	
+        	if(is == null){
+        		return;
+        	}
         	
             LogManager.getLogManager().readConfiguration(is);
             
