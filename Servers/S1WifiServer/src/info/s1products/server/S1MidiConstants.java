@@ -6,7 +6,7 @@ public class S1MidiConstants {
 	public static final String VERSION_NO = "2.0.0";
 	public static final String SUPPORT_SITE_URL = "http://s1products.info";
 
-	public static final String PROP_FILE = "S1MidiWifiServer.properties";
+	public static final String PROP_FILE = "S1WifiServer.properties";
 
 	public static final String KEY_USE_MIDI_OUT = "UseMidiOut";
 	public static final String KEY_USE_MIDI_IN  = "UseMidiIn";
