@@ -6,6 +6,8 @@ import info.s1products.server.event.RoutingErrorListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * 
@@ -18,7 +20,7 @@ public abstract class Router extends Thread {
 	/**
 	 * Packet queue (FIFO queue)
 	 */
-	private List<Object> routingQueue = new ArrayList<Object>();
+	private Queue<Object> routingQueue = new ConcurrentLinkedQueue<Object>();
 
 	/**
 	 * Run loop interval for routing message
@@ -78,7 +80,7 @@ public abstract class Router extends Thread {
 			}
 
 			// Get packet from FIFO queue and route
-			route(routingQueue.remove(0));
+			route(routingQueue.poll());
 		}
 	}
 	
