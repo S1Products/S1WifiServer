@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2013 Shuichi Miura.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the GNU Public License v3.0
+ * which accompanies this distribution, and is available at
+ * http://www.gnu.org/licenses/gpl.html
+ * 
+ * Contributors:
+ *     Shuichi Miura - initial API and implementation
+ ******************************************************************************/
 package info.s1products.server.converter;
 
 import info.s1products.server.message.Argument;
@@ -6,15 +16,14 @@ import info.s1products.server.message.Message;
 import info.s1products.server.message.Packet;
 import info.s1products.server.router.RoutingConstants;
 import info.s1products.server.util.ByteUtil;
+import info.s1products.utility.midi.MidiUtility;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SimpleMidiRequestConverter implements RequestConverter {
 
-	//TODO: delete message prefix
-	public static final int MESSAGE_PREFIX = 0x1;
-	public static final int BUNDLE_PREFIX  = 0x2;
+	public static final int BUNDLE_PREFIX  = 0x1;
 	
 	@Override
 	public List<Message> convertMessageList(Packet packet) {
@@ -28,7 +37,7 @@ public class SimpleMidiRequestConverter implements RequestConverter {
 		
 		return messageList;
 	}
-
+	
 	@Override
 	public boolean isTarget(Packet packet) {
 		
@@ -39,13 +48,9 @@ public class SimpleMidiRequestConverter implements RequestConverter {
 		byte firstByte = packet.getContents()[0];
 		if(firstByte == BUNDLE_PREFIX){
 			return true;
-
-		//TODO:Check valid midi message
-		}else if(firstByte == MESSAGE_PREFIX){
-			return true;
 		}
 		
-		return true;
+		return MidiUtility.isValidMidiMessage(firstByte);
 	}
 
 	private boolean isBundle(Packet packet) {

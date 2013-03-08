@@ -6,5 +6,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/MessageRoutingEngine"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="src" path="images"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/S1UtilitiesLibrary"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
