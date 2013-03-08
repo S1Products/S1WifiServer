@@ -48,7 +48,7 @@ public class MidiDriverTest {
 		prop.setProperty(PROP_DEVICE_ID, "Microsoft GS Wavetable Synth");
 		
 		MidiSender driver = new MidiSender(prop);
-		driver.open();
+		driver.openSender();
 
 		Message message = new Message();
 		Argument arg = new Argument(DataTypeEnum.MidiMessage);
@@ -65,7 +65,7 @@ public class MidiDriverTest {
 		result = driver.receiveMessageFromRouter(message);
 		assertTrue(result.isSuccess());
 		
-		driver.close();
+		driver.closeSender();
 	}
 
 }

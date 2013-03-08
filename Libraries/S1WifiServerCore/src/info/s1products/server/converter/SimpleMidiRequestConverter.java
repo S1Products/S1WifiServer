@@ -41,16 +41,11 @@ public class SimpleMidiRequestConverter implements RequestConverter {
 	@Override
 	public boolean isTarget(Packet packet) {
 		
-		if(packet.getContents().length == 0){
-			return false;
-		}
-		
-		byte firstByte = packet.getContents()[0];
-		if(firstByte == BUNDLE_PREFIX){
+		if(isBundle(packet)){
 			return true;
 		}
-		
-		return MidiUtility.isValidMidiMessage(firstByte);
+
+		return MidiUtility.isValidMidiMessage(packet.getContents());
 	}
 
 	private boolean isBundle(Packet packet) {
@@ -67,7 +62,7 @@ public class SimpleMidiRequestConverter implements RequestConverter {
 		
 		return false;
 	}
-
+	
 	private List<Argument> createArgumentList(byte[] data){
 		
 		List<Argument> argList = new ArrayList<Argument>();
@@ -91,8 +86,8 @@ public class SimpleMidiRequestConverter implements RequestConverter {
 	}
 	
 	private Argument createArgument(byte[] data, int length){
+
 		
-		//TODO:Implement MIDI Specification
 		
 		Argument arg = new Argument(DataTypeEnum.MidiMessage);
 		

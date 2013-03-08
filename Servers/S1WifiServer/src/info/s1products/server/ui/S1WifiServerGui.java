@@ -10,20 +10,20 @@
  ******************************************************************************/
 package info.s1products.server.ui;
 
+import static info.s1products.server.S1MidiConstants.KEY_ALWAYS_ON_TOP;
 import static info.s1products.server.S1MidiConstants.KEY_MIDI_IN_INDEX;
 import static info.s1products.server.S1MidiConstants.KEY_MIDI_OUT_INDEX;
 import static info.s1products.server.S1MidiConstants.KEY_NOTIFIER_PORT_NO;
 import static info.s1products.server.S1MidiConstants.KEY_REQUEST_PORT_NO;
 import static info.s1products.server.S1MidiConstants.KEY_USE_MIDI_IN;
 import static info.s1products.server.S1MidiConstants.KEY_USE_MIDI_OUT;
-import static info.s1products.server.S1MidiConstants.KEY_ALWAYS_ON_TOP;
 import static info.s1products.server.ServerConstants.DEFAULT_NOTIFIER_PORT;
 import static info.s1products.server.ServerConstants.DEFAULT_REQUEST_PORT;
 import info.s1products.server.device.MidiDeviceUtil;
 import info.s1products.server.event.MessageReceivedEvent;
 import info.s1products.server.event.MessageReceivedListener;
-import info.s1products.server.event.MessageSendedEvent;
-import info.s1products.server.event.MessageSendedListener;
+import info.s1products.server.event.MessageSentEvent;
+import info.s1products.server.event.MessageSentListener;
 import info.s1products.server.event.PacketNotifiedEvent;
 import info.s1products.server.event.PacketNotifiedListener;
 import info.s1products.server.event.RequestReceivedEvent;
@@ -77,6 +77,8 @@ public class S1WifiServerGui {
 	private S1MidiWifiServerGuiController controller 
 		= new S1MidiWifiServerGuiController();
 
+	private Properties appProp;
+	
 	private JFrame frmSWifiServer;
 
 	private MonitorLightField readyLight;
@@ -101,18 +103,12 @@ public class S1WifiServerGui {
 	private JPanel panelOthers;
 	private JCheckBox checkAlwaysOnTop;
 	
+	/**
+	 * Set jTattoo look and feel property
+	 */
 	private static void setLookAndFeel(){
 
 		try{
-/*			
-	        OSType type = OSDetector.getExecutingOSType();
-	        if(type == OSType.Mac || type == OSType.MacOSX){
-	        	
-	        	System.setProperty( "com.apple.mrj.application.apple.menu.about.name", "S1 Wifi Server" );
-	        	System.setProperty( "com.apple.macos.useScreenMenuBar", "true" );
-	        	System.setProperty( "apple.laf.useScreenMenuBar", "true" );
-	        }
-*/
 			Properties lafProp = new Properties();
 			lafProp.setProperty("backgroundColorLight", "40 40 40");
 			lafProp.setProperty("backgroundColorDark",  "30 30 30");
@@ -126,7 +122,7 @@ public class S1WifiServerGui {
 	}
 	
 	/**
-	 * Launch the application.
+	 * Launch this application.
 	 */
 	public static void main(String[] args) {
 
@@ -147,13 +143,14 @@ public class S1WifiServerGui {
 		});
 	}
 
+	/**
+	 * Initialize MIDI in/out devices list 
+	 */
 	private void initializeDeviceList(){
 		
 		comboMidiOut.removeAllItems();
 		comboMidiIn.removeAllItems();
 
-		controller.loadSettings();
-		
 		List<String> outDeviceList = MidiDeviceUtil.getMidiOutDriverList();
 		for(String deviceName : outDeviceList){
 			
@@ -167,10 +164,11 @@ public class S1WifiServerGui {
 		}
 	}
 
+	/**
+	 * Initialize CheckBoxes and ComboBoxes 
+	 */
 	private void initializeInputControls(){
 		
-		Properties appProp = controller.loadSettings();
-
 		String useOutStr = appProp.getProperty(KEY_USE_MIDI_OUT);
 		if(useOutStr == null){
 			checkMidiOut.setSelected(true);
@@ -239,12 +237,18 @@ public class S1WifiServerGui {
 		}
 	}
 	
+	/**
+	 * Initialize UI state
+	 */
 	private void initializeUI(){
 		
 		initializeDeviceList();
 		initializeInputControls();
 	}
 
+	/**
+	 * Start server when press start button
+	 */
 	private void startServer(){
 		
 		int reqPort = Integer.parseInt(spinRequestPort.getValue().toString());
@@ -265,6 +269,9 @@ public class S1WifiServerGui {
 		disableControls();
 	}
 
+	/**
+	 * Disable input controls
+	 */
 	private void disableControls(){
 		
 		spinRequestPort.setEnabled(false);
@@ -275,6 +282,9 @@ public class S1WifiServerGui {
 		comboMidiOut.setEnabled(false);
 	}
 
+	/**
+	 * Stop server when press stop button
+	 */
 	private void stopServer(){
 		
 		controller.stopServer();
@@ -343,6 +353,8 @@ public class S1WifiServerGui {
 	 */
 	public S1WifiServerGui() {
 
+		appProp = controller.loadSettings();
+		
 		initLogConfiguration();
 		logger.config("Test");
 		
@@ -521,10 +533,10 @@ public class S1WifiServerGui {
 		inLight.setText("MIDI In");
 		panelMonitor.add(inLight);
 		
-		controller.getS1MidiWifiServer().setMidiOutListener(new MessageSendedListener() {
+		controller.getS1MidiWifiServer().setMidiOutListener(new MessageSentListener() {
 			
 			@Override
-			public void messageSended(MessageSendedEvent event) {
+			public void messageSent(MessageSentEvent event) {
 				outLight.setOn(true);
 			}
 		});

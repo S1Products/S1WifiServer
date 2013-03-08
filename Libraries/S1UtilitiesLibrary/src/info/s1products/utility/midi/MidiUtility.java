@@ -16,6 +16,14 @@ package info.s1products.utility.midi;
  */
 public class MidiUtility {
 
+	public static final int INVALID_MESSAGE_LENGTH = 0;
+	public static final int SYS_EX_LENGTH = -1;
+	
+	/**
+	 * Check specified byte array is valid MIDI data with MIDI command and data length.
+	 * @param midiData MIDI data
+	 * @return True: Valid message, False: Invalid message
+	 */
 	public static boolean isValidMidiMessage(byte[] midiData){
 
 		if(midiData == null || midiData.length == 0){
@@ -23,46 +31,22 @@ public class MidiUtility {
 			return false;
 		}
 		
-		return isValidMidiMessage(midiData[0]);
-	}
+		int length = getMidiMessageLength(midiData[0]);
 
-	public static boolean isValidMidiMessage(byte firstByte){
-		
-		int command = firstByte & 0x0F;
-		switch(command){
-
-			case 0x80:
-				return true;
-				
-			case 0x90:
-				return true;
-				
-			case 0xA0:
-				return true;
-				
-			case 0xB0:
-				return true;
-				
-			case 0xC0:
-				return true;
-				
-			case 0xD0:
-				return true;
-				
-			case 0xE0:
-				return true;
-				
-			case 0xF0:
-				return true;
+		if(length == SYS_EX_LENGTH){
+			return true;
+			
+		}else if(midiData.length == length){
+			return true;
 		}
 		
 		return false;
 	}
-	
+
 	/**
 	 * Get MIDI message length for MIDI Specification 
 	 * @param midiData raw MIDI message
-	 * @return message length (-1 = unlimited, 0 = not midi message)
+	 * @return message length (-1: Unlimited, 0: Not MIDI message)
 	 */
 	public static int getMidiMessageLength(byte[] midiData){
 		
@@ -76,7 +60,7 @@ public class MidiUtility {
 	/**
 	 * Get MIDI message length for MIDI Specification 
 	 * @param firstByte first byte of MIDI message 
-	 * @return message length (-1 = unlimited, 0 = not midi message)
+	 * @return message length (-1: Unlimited, 0: Not MIDI message)
 	 */
 	public static int getMidiMessageLength(byte firstByte){
 

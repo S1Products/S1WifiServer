@@ -10,6 +10,8 @@
  ******************************************************************************/
 package info.s1products.server;
 
+import info.s1products.server.ServerBase;
+import info.s1products.server.ServerConstants;
 import info.s1products.server.converter.OSCRequestConverter;
 import info.s1products.server.converter.RequestConverter;
 import info.s1products.server.converter.SimpleMidiNotificationConverter;
@@ -19,7 +21,7 @@ import info.s1products.server.device.DeviceMessageSender;
 import info.s1products.server.device.MidiReceiver;
 import info.s1products.server.device.MidiSender;
 import info.s1products.server.event.MessageReceivedListener;
-import info.s1products.server.event.MessageSendedListener;
+import info.s1products.server.event.MessageSentListener;
 import info.s1products.server.event.PacketNotifiedListener;
 import info.s1products.server.event.RequestReceivedListener;
 import info.s1products.server.event.RoutingErrorListener;
@@ -45,7 +47,7 @@ public class S1WifiServer extends ServerBase {
 	private Properties midiOutProp = new Properties();
 	private Properties midiInProp = new Properties();
 	
-	private MessageSendedListener   midiOutListener;
+	private MessageSentListener   midiOutListener;
 	private MessageReceivedListener midiInListener;
 	private RequestReceivedListener requestListener;
 	private PacketNotifiedListener  sendedListener;
@@ -111,11 +113,11 @@ public class S1WifiServer extends ServerBase {
 		this.useMidiIn = useMidiIn;
 	}
 
-	public void setMidiOutListener(MessageSendedListener listener){
+	public void setMidiOutListener(MessageSentListener listener){
 		this.midiOutListener = listener;
 	}
 
-	public MessageSendedListener getMidiOutListener() {
+	public MessageSentListener getMidiOutListener() {
 		return midiOutListener;
 	}
 
@@ -154,16 +156,16 @@ public class S1WifiServer extends ServerBase {
 // Methods	
 
 	@Override
-	public void prepareServer() {
+	protected void prepareServer() {
 	}
 
 	@Override
-	public void onStartRequestRouter(RequestPacketRouter router) {
+	protected void onStartRequestRouter(RequestPacketRouter router) {
 		router.addListener(errorListener);
 	}
 
 	@Override
-	public void onStartNotificationRouter(NotificationPacketRouter router) {
+	protected void onStartNotificationRouter(NotificationPacketRouter router) {
 		router.addListener(errorListener);
 	}
 	
@@ -251,6 +253,6 @@ public class S1WifiServer extends ServerBase {
 	}
 
 	@Override
-	public void cleanupServer() {
+	protected void cleanupServer() {
 	}
 }

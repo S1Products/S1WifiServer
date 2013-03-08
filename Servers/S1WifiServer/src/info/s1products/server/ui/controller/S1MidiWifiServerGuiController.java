@@ -10,13 +10,13 @@
  ******************************************************************************/
 package info.s1products.server.ui.controller;
 
+import static info.s1products.server.S1MidiConstants.KEY_ALWAYS_ON_TOP;
 import static info.s1products.server.S1MidiConstants.KEY_MIDI_IN_INDEX;
 import static info.s1products.server.S1MidiConstants.KEY_MIDI_OUT_INDEX;
 import static info.s1products.server.S1MidiConstants.KEY_NOTIFIER_PORT_NO;
 import static info.s1products.server.S1MidiConstants.KEY_REQUEST_PORT_NO;
 import static info.s1products.server.S1MidiConstants.KEY_USE_MIDI_IN;
 import static info.s1products.server.S1MidiConstants.KEY_USE_MIDI_OUT;
-import static info.s1products.server.S1MidiConstants.KEY_ALWAYS_ON_TOP;
 import static info.s1products.server.S1MidiConstants.PROP_FILE;
 import static info.s1products.server.ServerConstants.DEFAULT_NOTIFIER_PORT;
 import static info.s1products.server.ServerConstants.DEFAULT_REQUEST_PORT;

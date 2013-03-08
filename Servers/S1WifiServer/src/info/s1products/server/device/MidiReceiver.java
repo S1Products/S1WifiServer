@@ -36,7 +36,7 @@ public class MidiReceiver extends DeviceMessageReceiver
 	}
 
 	@Override
-	public boolean onInitialize(Properties prop) {
+	protected boolean onInitialize(Properties prop) {
 		
 		try{
 			device = MidiDeviceUtil.getMidiInDevice(prop.getProperty(PROP_DEVICE_ID));
@@ -62,7 +62,7 @@ public class MidiReceiver extends DeviceMessageReceiver
 	}
 
 	@Override
-	public boolean onClose() {
+	protected boolean onClose() {
 		
 		transmitter.close();
 		device.close();

@@ -10,27 +10,22 @@
  ******************************************************************************/
 package info.s1products.server.event;
 
-import info.s1products.server.router.RoutingResult;
+import info.s1products.server.message.Message;
 
 import java.util.EventObject;
 
-public class RoutingErrorEvent extends EventObject {
+public class MessageSentEvent extends EventObject {
 
-	private static final long serialVersionUID = -3923893585690179136L;
+	private static final long serialVersionUID = -8639692837173256639L;
 
-	private RoutingResult result;
-
-	public RoutingErrorEvent(Object source, RoutingResult result) {
-		super(source);
-		this.result = result;
-	}
-
-	public RoutingResult getResult() {
-		return result;
-	}
-
-	public void setResult(RoutingResult result) {
-		this.result = result;
-	}
+	private Message message;
 	
+	public MessageSentEvent(Object source, Message message) {
+		super(source);
+		this.message = message;
+	}
+
+	public Message getMessage() {
+		return message;
+	}
 }
