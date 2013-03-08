@@ -1,0 +1,11 @@
+info.s1products.server
+info.s1products.server.converter
+info.s1products.server.core.mock.driver
+info.s1products.server.core.router
+info.s1products.server.device
+info.s1products.server.event
+info.s1products.server.message
+info.s1products.server.notify
+info.s1products.server.request
+info.s1products.server.router
+info.s1products.server.util
